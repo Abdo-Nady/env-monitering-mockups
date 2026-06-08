@@ -1,0 +1,102 @@
+@import '../search-types-devices/search-types-devices.css';
+
+.custom-rich-select {
+  position: relative;
+  width: min(32rem, 100%);
+  min-width: 20rem;
+}
+
+.select-toggle {
+  width: 100%;
+  border: 1px solid #8fb8f0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  color: #0f172a;
+  font-size: 0.96rem;
+  font-weight: 600;
+  padding: 0.72rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  cursor: pointer;
+  text-align: right;
+  box-shadow: 0 4px 12px #0f172a12;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select-toggle:hover {
+  border-color: #5b9cf0;
+}
+
+.select-toggle:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px #2563eb1f;
+}
+
+.selected-label {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.dropdown-icon {
+  color: #2563eb;
+  font-size: 1.2rem;
+}
+
+.dropdown-list {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  margin-top: 0.35rem;
+  background: #fff;
+  border: 1px solid #d6e3f7;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px #0f172a1a;
+  max-height: 18rem;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.dropdown-option {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: right;
+  padding: 0.7rem 0.8rem;
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  background: #f0f7ff;
+}
+
+.device-id {
+  color: #1d4ed8;
+  font-weight: 700;
+  font-family: monospace;
+  direction: ltr;
+  min-width: 7rem;
+  text-align: left;
+}
+
+.device-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.device-name {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.device-extra {
+  color: #64748b;
+  font-size: 0.82rem;
+}

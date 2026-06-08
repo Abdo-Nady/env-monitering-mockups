@@ -1,0 +1,60 @@
+<div>
+  <div class="title">محطة رصد</div>
+  <form class="form" action="">
+    <table>
+      <tr>
+        <td>اسم المحطة *</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="nameTypeDevice" />
+          </div>
+        </td>
+        <td>عناصر المراقبة *</td>
+        <td>
+          <div>
+            <mat-form-field appearance="outline" style="width: 91%;">
+              <mat-select [formControl]="toppings" multiple>
+                @for (topping of toppingList; track topping) {
+                  <mat-option [value]="topping">{{ topping }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>وسيلة التكامل</td>
+        <td>
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="">اختر وسيلة التكامل</option>
+              <option value="1">Serial Port</option>
+              <option value="2">TCP Socket</option>
+              <option value="3">Webhooks</option>
+            </select>
+          </div>
+        </td>
+        <td>المحافظة *</td>
+        <td>
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="">اختر المحافظة</option>
+              <option value="1">بورسعيد</option>
+              <option value="2">البحر الأحمر</option>
+              <option value="3">شمال سيناء</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSaveClick()">حفظ</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSaveClick()">إلغاء</button>
+      </div>
+    </div>
+  </form>
+</div>

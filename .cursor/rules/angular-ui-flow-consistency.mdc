@@ -1,0 +1,20 @@
+---
+description: Keep Angular UI flow and component wiring consistent
+globs: src/app/**/*.{ts,html,css}
+alwaysApply: false
+---
+
+# Angular UI Flow Consistency
+
+- Prefer one navigation model per feature: if menu state drives screens, keep event flow explicit and consistent.
+- Use typed unions for screen/detail keys and keep `@switch` cases synchronized with those union values.
+- For standalone components, every template dependency must be in `@Component.imports` (Material modules, directives, pipes, child standalone components).
+- Keep child-to-parent transitions event-driven (`output` + template binding), and avoid wiring save/cancel/search to the same handler unless intentional.
+- Reuse shared styles; avoid copy/paste CSS drift across sibling feature folders.
+- Keep IDs unique in templates and avoid duplicated static IDs in repeated sections.
+
+## Quick checks before finishing
+
+- `ng build` passes.
+- New template bindings map to existing TS properties/methods.
+- New component selectors used in templates are imported and standalone-compatible.

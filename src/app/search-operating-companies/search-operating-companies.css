@@ -1,0 +1,36 @@
+@import '../search-types-devices/search-types-devices.css';
+
+.rich-select--status {
+  border: 1px solid #dbe7ff;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8fbff, #eef4ff);
+  box-shadow: 0 8px 20px #2563eb14;
+  padding: 2px;
+}
+
+.rich-select--status .rich-select-icon {
+  position: absolute;
+  inset-inline-start: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2563eb;
+  font-size: 1.05rem;
+  pointer-events: none;
+}
+
+.rich-select--status select {
+  padding-inline-start: 38px;
+  border: 0;
+  background: transparent;
+  border-radius: 10px;
+}
+
+.rich-select--status select:focus {
+  box-shadow: 0 0 0 3px #2563eb2b;
+}
+
+.rich-select--status .select-caret {
+  font-family: 'Material Icons';
+  font-size: 1.15rem;
+  color: #2563eb;
+}

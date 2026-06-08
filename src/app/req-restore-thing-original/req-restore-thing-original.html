@@ -1,0 +1,225 @@
+<div>
+  <div class="title">بيانات طلب إعادة الشئ لأصله</div>
+  <form class="form" action="">
+    <table>
+      <tr>
+        <td style="width: 20%;">اسم الشركة</td>
+        <td style="width: 30%;">
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="">اختر اسم الشركة</option>
+              <option value="1" selected>ميرسك مصر</option>
+              <option value="2">سي إم آي - سي جي إم</option>
+              <option value="3">أوشن نتورك إكسبريس</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+        <td style="width: 10%;">الميناء</td>
+        <td style="width: 40%;">
+          <div class="input-field rich-select" style="width: 92%;">
+            <select name="unit" id="unit">
+              <option value="">اختر الميناء</option>
+              <option value="1">ميناء 1</option>
+              <option value="2" selected>ميناء 2</option>
+              <option value="3">ميناء 3</option>
+              <option value="4">ميناء 4</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>المحضر</td>
+        <td colspan="3">
+          <div class="input-field rich-select" style="width: 97%;">
+            <select name="unit" id="unit">
+              <option value="">اختر المحضر</option>
+              <option value="1">محضر 102 بتاريخ 2026-04-22 12:00</option>
+              <option value="2" selected>محضر 1 بتاريخ 2026-04-22 12:00</option>
+              <option value="4">محضر 104 بتاريخ 2026-04-22 12:00</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>الملاحظات</td>
+        <td colspan="3">
+          <div class="input-field" style="width: 115%;">
+            <input autocomplete="off" type="text" readonly name="text" id="port" value="إلقاء زيوت بالماء" />
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="width: 10%;">عنصر المراقبة</td>
+        <td style="width: 40%;">
+          <div class="input-field" style="width: 102%;">
+            <input autocomplete="off" readonly type="text" name="text" id="port" value="حدث" />
+          </div>
+        </td>
+        <td style="width: 10%;">تاريخ </td>
+        <td style="width: 40%;">
+          <div class="input-field" style="width: 101%;">
+            <input autocomplete="off" readonly type="datetime" name="text" id="port" value="2026-04-22 12:00" />
+          </div>
+        </td>
+
+      </tr>
+      <tr>
+        <td>المتسبب</td>
+        <td colspan="3">
+          <div class="input-field" style="width: 115%;">
+            <input autocomplete="off" type="text" readonly name="text" id="port"
+              value="WANDA A - رقم الطريق 1234567891" />
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>الموقع</td>
+        <td colspan="3">
+          <div class="input-field" style="width: 115%;">
+            <input autocomplete="off" type="text" readonly name="text" id="port" value="رصيف 1 بيتا 52" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <hr />
+        </td>
+        <hr style="margin: 10px 0;" />
+      </tr>
+      <tr>
+        <td style="width: 10%;">اسم مسؤول</td>
+        <td style="width: 40%;">
+          <div class="input-field" style="width: 102%;">
+            <input autocomplete="off" type="text" name="text" id="port" value="محمد علي" />
+          </div>
+        </td>
+        <td style="width: 10%;">رقم الهاتف</td>
+        <td style="width: 40%;">
+          <div class="input-field" style="width: 105%;">
+            <input autocomplete="off" type="text" name="text" id="port" value="01234567890" />
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="width: 10%;">تاريخ الطلب</td>
+        <td style="width: 40%;">
+          <div class="input-field" style="width: 102%;">
+            <input autocomplete="off" type="date" name="text" id="request-date" value="2026-04-22" />
+          </div>
+        </td>
+        <td style="width: 10%;">مخطط الإنتهاء</td>
+        <td style="width: 40%;">
+          <div class="input-field" style="width: 105%;">
+            <input autocomplete="off" type="datetime-local" name="plan-completion-date" id="plan-completion-date" value="2026-04-22 12:00" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>ملاحظات إضافية</td>
+        <td colspan="3">
+          <div class="input-field" style="width: 117%;">
+            <input autocomplete="off" type="multiline" name="text" id="notes"
+              value="معدات مخصصة / حاجة لإغلاق جزئي للرصيف" />
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <section class="table-card" aria-label="الإجراء المقترح">
+      <header class="table-card-header">
+        <h5 class="table-title">الإجراءات المقترح</h5>
+      </header>
+      <div class="action-buttons" style="margin-bottom: 8px;">
+        <button type="button" mat-icon-button class="edit-btn" aria-label="إضافة" title="إضافة">
+          <span class="material-icons">add</span>
+        </button>
+      </div>
+      <div class="table-wrapper">
+        <table mat-table [dataSource]="attachmentsDataSource" class="units-table">
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> م </th>
+            <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> الإجراء </th>
+            <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>إجراءات</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="action-buttons">
+                <button type="button" mat-icon-button class="edit-btn" aria-label="تعديل" title="تعديل">
+                  <span class="material-icons">edit</span>
+                </button>
+                <button type="button" mat-icon-button class="delete-btn" aria-label="حذف" title="حذف">
+                  <span class="material-icons">delete</span>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+
+
+          <tr mat-header-row *matHeaderRowDef="attachmentsDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: attachmentsDisplayedColumns"></tr>
+        </table>
+        <style>
+          .action-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: flex-start;
+          }
+
+          .action-buttons .edit-btn {
+            background: linear-gradient(135deg, #1976d2, #64b5f6);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            box-shadow: 0 2px 8px #1976d263;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons .delete-btn {
+            background: linear-gradient(135deg, #d32f2f, #ff5252);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            box-shadow: 0 2px 8px #d32f2f63;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons button .material-icons {
+            vertical-align: middle;
+            font-size: 1.2rem;
+          }
+        </style>
+
+      </div>
+    </section>
+
+
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSaveClick()">حفظ</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSaveClick()">إلغاء</button>
+      </div>
+    </div>
+  </form>
+</div>

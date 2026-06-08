@@ -1,0 +1,403 @@
+<div>
+  <div class="title">بيانات المحضر</div>
+  <form class="form" action="">
+    <table>
+      <tr>
+        <td>الميناء</td>
+        <td>
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="1" selected>ميناء 1</option>
+            </select>
+          </div>
+        </td>
+        <td>الحالة</td>
+        <td>
+          <div class="input-field rich-select" style="width: 89%;">
+            <select name="unit" id="unit">
+              <option value="1" selected>جارى المتابعة</option>
+              <option value="2">مكتمل</option>
+              <option value="3">ملغي</option>
+            </select>
+          </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td>رقم المحضر</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="numberDevice" value="1234567890" />
+          </div>
+        </td>
+
+        <td>تاريخ المحضر</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="datetime-local" name="text" id="transactionDate" value="2026-01-01 12:00" />
+          </div>
+        </td>
+
+      </tr>
+      <tr>
+        <td>المصدر</td>
+        <td>
+          <mat-radio-group aria-label="Select an option" [value]="selectedType" (change)="onTypeChange($event)">
+            <mat-radio-button value="report">بلاغ</mat-radio-button>
+          </mat-radio-group>
+        </td>
+
+      </tr>
+
+      <tr>
+        <td>عنصر المراقبة</td>
+        <td>
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="6" selected>حدث</option>
+            </select>
+          </div>
+        </td>
+        <td>المتسبب</td>
+        <td>
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="6" selected>CMA CGM ADONIS - رقم الطريق 1234567890</option>
+            </select>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>التعليمات المتبعة</td>
+        <td colspan="15">
+          <div class="input-field">
+            <input autocomplete="off" type="text" readonly name="instructions" id="instructions"
+              value="رفع درجة الإستعداد، وطلب الدفاع المدنى" />
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>الملاحظات</td>
+        <td colspan="15">
+          <div class="input-field">
+            <input autocomplete="off" type="text" readonly name="notes" id="notes" value="كسر برصيف رقم 1" />
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div class="tabs-container" style="margin-bottom: 10px;">
+      <nav class="tabs-nav">
+        <button type="button" class="tab-btn" [class.active]="selectedTab === 'committee'"
+          (click)="selectedTab = 'committee'">
+          اللجنة
+        </button>
+        <button type="button" class="tab-btn" [class.active]="selectedTab === 'estimate'"
+          (click)="selectedTab = 'estimate'">
+          المقايسة التقديرية
+        </button>
+      </nav>
+    </div>
+
+    @if (selectedTab === 'committee') {
+    <!-- محتوى اللجنة يوضع هنا -->
+    <div class="tab-content">
+      <table>
+        <tr>
+          <td>اسم اللجنة</td>
+          <td>
+            <div class="input-field rich-select" style="width: 200px;">
+              <select name="unit" id="unit">
+                <option value=""> إختار اللجنة </option>
+                <option value="1" selected>لجنة حوادث الشاحنات</option>
+                <option value="2">لجنة حوادث السفن</option>
+                <option value="3">لجنة حوادث المركبات</option>
+                <option value="4">لجنة حوادث القطارات</option>
+              </select>
+            </div>
+          </td>
+          <td style="width: 100px;">رأى اللجنة</td>
+          <td>
+            <div class="input-field" style="width: 450px;">
+              <input autocomplete="off" type="text" name="instructions" id="instructions"
+                value="توكيل السفينة يتحمل تكليف الإصلاح" />
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <section class="table-card" aria-label="أعضاء اللجنة">
+      <header class="table-card-header">
+        <h5 class="table-title">أعضاء اللجنة</h5>
+      </header>
+
+      <div class="table-wrapper">
+        <table mat-table [dataSource]="dataSource" class="units-table">
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> م </th>
+            <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> الاسم </th>
+            <td mat-cell *matCellDef="let element"> {{ element.name }}</td>
+          </ng-container>
+          <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef> الإدارة </th>
+            <td mat-cell *matCellDef="let element"> {{ element.department }}</td>
+          </ng-container>
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> النوع</th>
+            <td mat-cell *matCellDef="let element"> {{ element.type }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="opinion">
+            <th mat-header-cell *matHeaderCellDef>رأى العضو</th>
+            <td mat-cell *matCellDef="let element"> {{ element.opinion }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>إجراءات</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="action-buttons">
+                <button type="button" mat-icon-button class="edit-btn" aria-label="تعديل" title="تعديل">
+                  <span class="material-icons">edit</span>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <style>
+          .action-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: flex-start;
+          }
+
+          .action-buttons .edit-btn {
+            background: linear-gradient(135deg, #1976d2, #64b5f6);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            box-shadow: 0 2px 8px #1976d263;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons .delete-btn {
+            background: linear-gradient(135deg, #d32f2f, #ff5252);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            box-shadow: 0 2px 8px #d32f2f63;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons .attachments-btn {
+            background: linear-gradient(135deg, #0f766e, #34d399);
+            color: #fff;
+            border-radius: 10px;
+            padding: 8px 10px;
+            border: 1px solid #ffffff40;
+            box-shadow: 0 3px 10px #0f766e66;
+            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons .attachments-btn:hover {
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 5px 14px #0f766e80;
+            filter: saturate(1.08);
+          }
+
+          .action-buttons button .material-icons {
+            vertical-align: middle;
+            font-size: 1.2rem;
+          }
+        </style>
+      </div>
+    </section>
+
+    } @else {
+
+    <section class="table-card" aria-label="بنود المقايسة التقديرية">
+      <header class="table-card-header">
+        <h5 class="table-title">بنود المقايسة التقديرية</h5>
+      </header>
+      <div class="action-buttons">
+        <button type="button" mat-icon-button class="edit-btn" aria-label="إضافة" title="إضافة">
+          <span class="material-icons">add</span>
+        </button>
+      </div>
+
+      <div class="table-wrapper">
+        <table mat-table [dataSource]="estimateItemDataSource" class="units-table">
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> م </th>
+            <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> الاسم </th>
+            <td mat-cell *matCellDef="let element"> {{ element.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef> القيمة </th>
+            <td mat-cell *matCellDef="let element"> {{ element.value }}</td>
+          </ng-container>
+          <ng-container matColumnDef="currency">
+            <th mat-header-cell *matHeaderCellDef> العملة</th>
+            <td mat-cell *matCellDef="let element"> {{ element.currency }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>الوصف</th>
+            <td mat-cell *matCellDef="let element"> {{ element.description }}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>إجراءات</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="action-buttons">
+                <button type="button" mat-icon-button class="edit-btn" aria-label="تعديل" title="تعديل">
+                  <span class="material-icons">edit</span>
+                </button>
+                <button type="button" mat-icon-button class="delete-btn" aria-label="حذف" title="حذف">
+                  <span class="material-icons">delete</span>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="estimateItemColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: estimateItemColumns"></tr>
+        </table>
+        <table style="margin-top: 10px; border: solid 1px #e0e0e0; border-radius: 10px; padding: 10px;">
+          <tr>
+            <td>إجمالى المقايسة التقديرية بالدولار</td>
+            <td>2000</td>
+          </tr>
+          <tr>
+            <td>إجمالى المقايسة التقديرية ج.م</td>
+            <td>4000</td>
+          </tr>
+        </table>
+
+        <style>
+          .action-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: flex-start;
+          }
+
+          .action-buttons .edit-btn {
+            background: linear-gradient(135deg, #1976d2, #64b5f6);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            box-shadow: 0 2px 8px #1976d263;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons .delete-btn {
+            background: linear-gradient(135deg, #d32f2f, #ff5252);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            box-shadow: 0 2px 8px #d32f2f63;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons .attachments-btn {
+            background: linear-gradient(135deg, #0f766e, #34d399);
+            color: #fff;
+            border-radius: 10px;
+            padding: 8px 10px;
+            border: 1px solid #ffffff40;
+            box-shadow: 0 3px 10px #0f766e66;
+            transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons .attachments-btn:hover {
+            transform: translateY(-1px) scale(1.03);
+            box-shadow: 0 5px 14px #0f766e80;
+            filter: saturate(1.08);
+          }
+
+          .action-buttons button .material-icons {
+            vertical-align: middle;
+            font-size: 1.2rem;
+          }
+        </style>
+      </div>
+    </section>
+
+
+    }
+
+    <style>
+      .tabs-container {
+        direction: rtl;
+      }
+
+      .tabs-nav {
+        display: flex;
+        border-bottom: 2px solid #e0e0e0;
+        margin-bottom: 8px;
+      }
+
+      .tab-btn {
+        background: none;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1.15em;
+        cursor: pointer;
+        color: #666;
+        border-bottom: 2px solid transparent;
+        font-weight: 500;
+        transition: color 0.2s, border-bottom 0.2s;
+        outline: none;
+      }
+
+      .tab-btn.active {
+        color: #1976d2;
+        border-bottom: 2px solid #1976d2;
+        font-weight: 700;
+      }
+
+      .tab-content {
+        padding: 10px 0 0 0;
+      }
+    </style>
+
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSaveClick()">حفظ</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSaveClick()">إلغاء</button>
+      </div>
+    </div>
+  </form>
+</div>

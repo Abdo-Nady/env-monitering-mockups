@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.app-shell {
+  display: flex;
+  min-height: 100dvh;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}
+
+.app-sidebar {
+  flex: 1 1 auto;
+  min-width: min(18rem, 100%);
+  max-width: min(72rem, 100%);
+  min-height: 0;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+}
+
+.app-main-inner {
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  max-width: 56rem;
+}
+
+

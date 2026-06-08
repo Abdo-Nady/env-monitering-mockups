@@ -1,0 +1,212 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.menu-shell {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+}
+
+.menu-detail {
+  flex: 0 0 70%;
+  width: 70%;
+  max-width: 70%;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 0.75rem 0.75rem 1rem 0.5rem;
+  box-sizing: border-box;
+  background-color: var(--mat-sys-surface);
+}
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  padding: 1rem 0.75rem 1.25rem;
+  box-sizing: border-box;
+  background-color: var(--mat-sys-surface-container-low);
+  border-inline-end: 1px solid var(--mat-sys-outline-variant);
+  flex: 1 1 auto;
+}
+
+.menu-nav--split {
+  flex: 0 0 30%;
+  width: 30%;
+  max-width: 30%;
+  min-width: 0;
+  border-inline-end: 1px solid var(--mat-sys-outline-variant);
+}
+
+.menu-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0.5rem 0.75rem;
+}
+
+.menu-brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--mat-sys-primary) 22%, transparent),
+    color-mix(in srgb, var(--mat-sys-tertiary) 18%, transparent)
+  );
+  color: var(--mat-sys-primary);
+}
+
+.menu-brand-icon mat-icon {
+  font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.menu-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.menu-brand-title {
+  font: var(--mat-sys-title-large);
+  color: var(--mat-sys-on-surface);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-divider {
+  margin: 0 0 0.75rem;
+  border-color: color-mix(in srgb, var(--mat-sys-outline-variant) 85%, transparent);
+}
+
+.menu-level-label {
+  margin: 0 0.5rem 0.5rem;
+  font: var(--mat-sys-label-medium);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.menu-level-label--nested {
+  margin: 0 0 0.25rem;
+  font: var(--mat-sys-label-small);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.menu-accordion {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-inline: 0.125rem;
+}
+
+.menu-accordion.mat-accordion {
+  --mat-expansion-header-collapsed-state-height: 48px;
+}
+
+.menu-panel {
+  margin-bottom: 0.375rem;
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: none !important;
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline-variant) 70%, transparent);
+  background-color: var(--mat-sys-surface);
+}
+
+.menu-panel-header {
+  padding: 0 0.5rem;
+}
+
+.menu-panel-header.mat-expansion-panel-header {
+  font: var(--mat-sys-title-large);
+}
+
+.menu-panel-title {
+  font: var(--mat-sys-title-large);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--mat-sys-on-surface);
+}
+
+.menu-system-icon {
+  font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--mat-sys-primary);
+}
+
+.menu-panel-body {
+  padding: 0 0.5rem 0.75rem;
+}
+
+.menu-screen-list {
+  font: var(--mat-sys-title-large);
+  padding: 0;
+}
+
+.menu-screen-item {
+  border-radius: 10px !important;
+  margin-bottom: 0.125rem;
+  font: var(--mat-sys-body-large);
+}
+
+.menu-screen-item mat-icon {
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.menu-screen-item:hover mat-icon {
+  color: var(--mat-sys-primary);
+}
+
+.menu-screen-item--active {
+  background-color: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent) !important;
+}
+
+.menu-screen-item--active mat-icon {
+  color: var(--mat-sys-primary);
+}
+
+@media (max-width: 720px) {
+  .menu-brand-title {
+    white-space: normal;
+  }
+
+  .menu-shell {
+    flex-direction: column;
+  }
+
+  /* Stack: left panel on top, nav below */
+  .menu-detail {
+    order: -1;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: none;
+    border-block-end: 1px solid var(--mat-sys-outline-variant);
+    max-height: 70vh;
+  }
+
+  .menu-nav--split {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: none;
+    border-inline-end: none;
+  }
+}

@@ -1,0 +1,110 @@
+<div>
+  <form class="form">
+    <div class="form-row">
+      <div class="title" style="width: 500%;">محطات الرصد</div>
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onAddClick()">إضافة</button>
+      </div>
+    </div>
+  </form>
+</div>
+<hr />
+
+<div>
+  <form class="form">
+    <div class="form-row">
+      <label class="row-label" for="name">اسم المحطة</label>
+      <div class="input-field">
+        <input autocomplete="off" type="text" name="text" id="name" />
+      </div>
+    </div>
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSearchClick()">بحث</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSearchClick()">إلغاء</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<section class="table-card" aria-label="نتائج البحث">
+  <header class="table-card-header">
+    <h3 class="table-title">نتائج البحث</h3>
+  </header>
+
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" class="units-table">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> م </th>
+        <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> اسم المحطة </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="moniteringElements">
+        <th mat-header-cell *matHeaderCellDef>عناصر المراقبة</th>
+        <td mat-cell *matCellDef="let element"> {{ element.moniteringElements }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="IntegrationMechanism">
+        <th mat-header-cell *matHeaderCellDef>وسيلة التكامل</th>
+        <td mat-cell *matCellDef="let element"> {{ element.IntegrationMechanism }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>إجراءات</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="action-buttons">
+            <button type="button" mat-icon-button class="edit-btn" aria-label="تعديل" title="تعديل">
+              <span class="material-icons">edit</span>
+            </button>
+            <button type="button" mat-icon-button class="delete-btn" aria-label="حذف" title="حذف">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <style>
+      .action-buttons {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .action-buttons .edit-btn {
+        background: linear-gradient(135deg, #1976d2, #64b5f6);
+        color: #fff;
+        border-radius: 8px;
+        padding: 8px 10px;
+        box-shadow: 0 2px 8px #1976d263;
+        transition: background 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .action-buttons .delete-btn {
+        background: linear-gradient(135deg, #d32f2f, #ff5252);
+        color: #fff;
+        border-radius: 8px;
+        padding: 8px 10px;
+        box-shadow: 0 2px 8px #d32f2f63;
+        transition: background 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .action-buttons button .material-icons {
+        vertical-align: middle;
+        font-size: 1.2rem;
+      }
+    </style>
+  </div>
+</section>

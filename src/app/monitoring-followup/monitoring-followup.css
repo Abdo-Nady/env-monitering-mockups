@@ -1,0 +1,106 @@
+@import '../types-devices/types-devices.css';
+
+.custom-rich-select {
+  position: relative;
+  width: min(34rem, 100%);
+}
+
+.select-toggle {
+  width: 100%;
+  border: 1px solid #94b8f3;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #f7fbff 0%, #e8f1ff 100%);
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.7rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px #1d4ed814;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.select-toggle:hover {
+  border-color: #5b8fe6;
+  box-shadow: 0 10px 24px #1d4ed824;
+}
+
+.select-toggle:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px #2563eb24, 0 10px 24px #1d4ed826;
+}
+
+.select-leading-icon {
+  color: #1d4ed8;
+  font-size: 1.15rem;
+}
+
+.selected-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  text-align: right;
+}
+
+.device-id {
+  font-family: monospace;
+  color: #1e40af;
+  font-weight: 700;
+  direction: ltr;
+}
+
+.device-name {
+  color: #0f172a;
+}
+
+.dropdown-icon {
+  color: #2563eb;
+  font-size: 1.2rem;
+}
+
+.dropdown-list {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  margin-top: 0.35rem;
+  background: #fff;
+  border: 1px solid #dbe8fb;
+  border-radius: 12px;
+  box-shadow: 0 14px 28px #0f172a1f;
+  z-index: 40;
+  max-height: 16rem;
+  overflow-y: auto;
+}
+
+.dropdown-option {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: right;
+  padding: 0.65rem 0.8rem;
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.dropdown-option:hover {
+  background: #eff6ff;
+}
+
+.device-info,
+.station-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.device-extra,
+.station-extra {
+  color: #64748b;
+  font-size: 0.82rem;
+}

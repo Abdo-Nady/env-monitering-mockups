@@ -1,0 +1,265 @@
+<div>
+  <div class="title">بيانات طلب جمع النفايات</div>
+  <form class="form" action="">
+    <table>
+      <tr>
+        <td style="width: 15%;">التوكيل الملاحى</td>
+        <td style="width: 25%;">
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="">اختر اسم التوكيل الملاحى</option>
+              <option value="1" selected>ميرسك مصر</option>
+              <option value="2">سي إم آي - سي جي إم</option>
+              <option value="3">أوشن نتورك إكسبريس</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+
+        <td style="width: 15%;">تاريخ الطلب</td>
+        <td style="width: 25%;">
+          <div class="input-field" style="width: 95%;">
+            <input autocomplete="off" type="date" name="text" id="port" value="2026-04-22" />
+          </div>
+        </td>
+
+        </tr>
+        <tr>
+        <td style="width: 15%;">رحلة السفينة</td>
+        <td colspan="3">
+          <div class="input-field rich-select" style="width: 92.5%;">
+            <select name="unit" id="unit">
+              <option value="">اختر بيانات رحلة السفينة</option>
+              <option value="1">CMA CGM AMAZONIA - رقم الطريق 5261</option>
+              <option value="2" selected>WANDA A - رقم الطريق 5241</option>
+              <option value="3">ORION LEADER - رقم الطريق 5241</option>
+              <option value="4">BELLA NADIA - رقم الطريق 8596</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="width: 15%;">الميناء</td>
+        <td style="width: 25%;">
+          <div class="input-field" style="width: 95%;">
+            <input autocomplete="off" type="text" readonly name="text" id="port" value="ميناء 1" />
+          </div>
+        </td>
+        <td style="width: 15%;">مكان السفينة</td>
+        <td style="width: 45%;">
+          <div class="input-field" style="width: 95%;">
+            <input autocomplete="off" type="text" readonly name="text" id="port" value="رصيف 1 بيتا 52" />
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="width: 15%;">التوقيت المطلوب</td>
+        <td style="width: 25%;">
+          <div class="input-field" style="width: 95%;">
+            <input autocomplete="off" type="datetime" name="text" id="port" value="2026-04-22 12:00" />
+          </div>
+        </td>
+        <td style="width: 15%;">مكان الجمع</td>
+        <td style="width: 45%;">
+          <div class="input-field" style="width: 95%;">
+            <input autocomplete="off" type="text" name="text" id="port" value="رصيف 1 بيتا 52" />
+          </div>
+        </td>
+      </tr>
+
+    </table>
+
+    <div class="tabs-container" style="margin-bottom: 20px;">
+      <nav class="tabs-nav" style="display: flex; gap: 10px; border-bottom: 2px solid #eee;">
+        <button
+          type="button"
+          class="tab-btn"
+          [class.active]="selectedTab === 'wastes'"
+          (click)="selectedTab = 'wastes'"
+          style="padding: 10px 30px; background: none; border: none; outline: none; border-bottom: 3px solid transparent; font-size: 1.1rem; font-weight: 600; cursor: pointer;"
+          [ngStyle]="{ 'border-bottom': selectedTab === 'wastes' ? '3px solid #1976d2' : '3px solid transparent', color: selectedTab === 'wastes' ? '#1976d2' : '#222' }"
+        >
+        النفايات
+        </button>
+        <button
+          type="button"
+          class="tab-btn"
+          [class.active]="selectedTab === 'attachments'"
+          (click)="selectedTab = 'attachments'"
+          style="padding: 10px 30px; background: none; border: none; outline: none; border-bottom: 3px solid transparent; font-size: 1.1rem; font-weight: 600; cursor: pointer;"
+          [ngStyle]="{ 'border-bottom': selectedTab === 'attachments' ? '3px solid #1976d2' : '3px solid transparent', color: selectedTab === 'attachments' ? '#1976d2' : '#222' }"
+        >
+          المرفقات
+        </button>
+      </nav>
+    </div>
+    <ng-container *ngIf="selectedTab === 'wastes'">
+      <section class="table-card" aria-label="النفايات">
+        <header class="table-card-header">
+          <h5 class="table-title">النفايات</h5>
+        </header>
+
+        <div class="table-wrapper">
+          <table mat-table [dataSource]="dataSource" class="units-table">
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> م </th>
+              <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> نوع النفاية </th>
+              <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef> الكمية </th>
+              <td mat-cell *matCellDef="let element"> {{ element.quantity }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="unit">
+              <th mat-header-cell *matHeaderCellDef> الوحدة </th>
+              <td mat-cell *matCellDef="let element"> {{ element.unit }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="company">
+              <th mat-header-cell *matHeaderCellDef> الشركة </th>
+              <td mat-cell *matCellDef="let element"> {{ element.company }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>إجراءات</th>
+              <td mat-cell *matCellDef="let element">
+                <div class="action-buttons">
+                  <button type="button" mat-icon-button class="edit-btn" aria-label="تعديل" title="تعديل">
+                    <span class="material-icons">edit</span>
+                  </button>
+                  <button type="button" mat-icon-button class="delete-btn" aria-label="حذف" title="حذف">
+                    <span class="material-icons">delete</span>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <style>
+            .action-buttons {
+              display: flex;
+              gap: 12px;
+              align-items: center;
+              justify-content: flex-start;
+            }
+
+            .action-buttons .edit-btn {
+              background: linear-gradient(135deg, #1976d2, #64b5f6);
+              color: #fff;
+              border-radius: 8px;
+              padding: 8px 10px;
+              box-shadow: 0 2px 8px #1976d263;
+              transition: background 0.2s, box-shadow 0.2s;
+              position: relative;
+              overflow: hidden;
+            }
+
+            .action-buttons .delete-btn {
+              background: linear-gradient(135deg, #d32f2f, #ff5252);
+              color: #fff;
+              border-radius: 8px;
+              padding: 8px 10px;
+              box-shadow: 0 2px 8px #d32f2f63;
+              transition: background 0.2s, box-shadow 0.2s;
+              position: relative;
+              overflow: hidden;
+            }
+
+            .action-buttons .attachments-btn {
+              background: linear-gradient(135deg, #0f766e, #34d399);
+              color: #fff;
+              border-radius: 10px;
+              padding: 8px 10px;
+              border: 1px solid #ffffff40;
+              box-shadow: 0 3px 10px #0f766e66;
+              transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+              position: relative;
+              overflow: hidden;
+            }
+
+            .action-buttons .attachments-btn:hover {
+              transform: translateY(-1px) scale(1.03);
+              box-shadow: 0 5px 14px #0f766e80;
+              filter: saturate(1.08);
+            }
+
+            .action-buttons button .material-icons {
+              vertical-align: middle;
+              font-size: 1.2rem;
+            }
+          </style>
+        </div>
+      </section>
+      <!-- محتوى النفايات يظهر هنا (يوجد بالفعل تحت هذا التبويب) -->
+    </ng-container>
+    <ng-container *ngIf="selectedTab === 'attachments'">
+      <section class="table-card" aria-label="المرفقات">
+        <header class="table-card-header">
+          <h5 class="table-title">المرفقات</h5>
+        </header>
+
+        <div class="table-wrapper">
+          <table mat-table [dataSource]="attachmentsDataSource" class="units-table">
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> م </th>
+              <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+            </ng-container>
+            <ng-container matColumnDef="wasteType">
+              <th mat-header-cell *matHeaderCellDef> نوع النفاية </th>
+              <td mat-cell *matCellDef="let element"> {{ element.wasteType }} </td>
+            </ng-container>
+            <ng-container matColumnDef="entity">
+              <th mat-header-cell *matHeaderCellDef> الجهة </th>
+              <td mat-cell *matCellDef="let element"> {{ element.entity }} </td>
+            </ng-container>
+            <ng-container matColumnDef="fileName">
+              <th mat-header-cell *matHeaderCellDef> اسم الملف </th>
+              <td mat-cell *matCellDef="let element"> {{ element.fileName }} </td>
+            </ng-container>
+            <ng-container matColumnDef="fileType">
+              <th mat-header-cell *matHeaderCellDef> نوع الملف </th>
+              <td mat-cell *matCellDef="let element"> {{ element.fileType }} </td>
+            </ng-container>
+            <ng-container matColumnDef="uploadedBy">
+              <th mat-header-cell *matHeaderCellDef> الوصف </th>
+              <td mat-cell *matCellDef="let element"> {{ element.uploadedBy }} </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>إجراءات</th>
+              <td mat-cell *matCellDef="let element">
+                <div class="action-buttons">
+                  <button type="button" mat-icon-button class="attachments-btn" aria-label="تنزيل" title="تنزيل">
+                    <span class="material-icons">download</span>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="attachmentsDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: attachmentsDisplayedColumns"></tr>
+          </table>
+        </div>
+      </section>
+    </ng-container>
+
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSaveClick()">إرسال</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSaveClick()">إغلاق</button>
+      </div>
+    </div>
+  </form>
+</div>

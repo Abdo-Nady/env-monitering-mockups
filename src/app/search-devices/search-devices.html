@@ -1,0 +1,165 @@
+<div>
+  <form class="form">
+    <div class="form-row">
+      <div class="title" style="width: 500%;">الأجهزة</div>
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onAddClick()">إضافة</button>
+      </div>
+    </div>
+  </form>
+</div>
+<hr />
+
+<div>
+  <form class="form">
+    <table>
+      <tr>
+        <td>رقم الجهاز</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="numberDevice" />
+          </div>
+        </td>
+        <td>نوع الجهاز</td>
+        <td>
+          <div class="input-field rich-select" style="width: 91%;">
+            <select name="unit" id="unit">
+              <option value="">اختر نوع الجهاز</option>
+              <option value="1">مراقبة جودة الهواء</option>
+              <option value="2">مراقبة درجة الحرارة</option>
+              <option value="3">مراقبة درجة الرطوبة</option>
+              <option value="4">مراقبة الإشعاع</option>
+              <option value="5">كاميرا مراقبة المرور</option>
+            </select>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>المورد</td>
+        <td>
+          <div class="input-field rich-select" style="width: 91%;">
+            <select name="unit" id="unit">
+              <option value="">اختر المورد</option>
+            </select>
+          </div>
+        </td>
+        <td><label>الحالة</label></td>
+        <td>
+          <div class="input-field rich-select" style="width: 91%;">
+            <select name="unit" id="unit">
+              <option value="">اختر الحالة</option>
+              <option value="1">نشط</option>
+              <option value="2">غير نشط</option>
+              <option value="3">معطل</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSearchClick()">بحث</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSearchClick()">إلغاء</button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<section class="table-card" aria-label="نتائج البحث">
+  <header class="table-card-header">
+    <h3 class="table-title">نتائج البحث</h3>
+  </header>
+
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" class="units-table">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> م </th>
+        <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="partNumber">
+        <th mat-header-cell *matHeaderCellDef> رقم الجهاز </th>
+        <td mat-cell *matCellDef="let element"> {{ element.partNumber }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deviceType">
+        <th mat-header-cell *matHeaderCellDef> نوع الجهاز </th>
+        <td mat-cell *matCellDef="let element"> {{ element.deviceType }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="supplier">
+        <th mat-header-cell *matHeaderCellDef> المورد </th>
+        <td mat-cell *matCellDef="let element"> {{ element.supplier }} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef>المكان</th>
+        <td mat-cell *matCellDef="let element"> {{ element.location }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>الحالة</th>
+        <td mat-cell *matCellDef="let element"> {{ element.status }} </td>
+      </ng-container>
+
+      <!-- New Actions column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>إجراءات</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="action-buttons">
+            <button type="button" mat-icon-button class="edit-btn" aria-label="تعديل" title="تعديل">
+              <span class="material-icons">edit</span>
+            </button>
+            <button type="button" mat-icon-button class="delete-btn" aria-label="حذف" title="حذف">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <style>
+      .action-buttons {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .action-buttons .edit-btn {
+        background: linear-gradient(135deg, #1976d2, #64b5f6);
+        color: #fff;
+        border-radius: 8px;
+        padding: 8px 10px;
+        box-shadow: 0 2px 8px #1976d263;
+        transition: background 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .action-buttons .delete-btn {
+        background: linear-gradient(135deg, #d32f2f, #ff5252);
+        color: #fff;
+        border-radius: 8px;
+        padding: 8px 10px;
+        box-shadow: 0 2px 8px #d32f2f63;
+        transition: background 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .action-buttons button .material-icons {
+        vertical-align: middle;
+        font-size: 1.2rem;
+      }
+    </style>
+  </div>
+</section>

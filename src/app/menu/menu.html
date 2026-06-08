@@ -1,0 +1,303 @@
+<div class="menu-shell">
+  <nav
+    class="menu-nav"
+    [class.menu-nav--split]="activeDetail() !== null"
+    aria-label="Primary navigation"
+  >
+    <header class="menu-brand">
+      <div class="menu-brand-icon" aria-hidden="true">
+        <mat-icon>monitoring</mat-icon>
+      </div>
+      <div class="menu-brand-text">
+        <span class="menu-brand-title">الرقابة البيئية</span>
+      </div>
+    </header>
+
+    <mat-divider class="menu-divider" />
+
+    <mat-accordion class="menu-accordion" displayMode="flat" [multi]="false">
+      @for (system of systems; track system.id; let i = $index) {
+        <mat-expansion-panel class="menu-panel" [expanded]="i === 0" togglePosition="before">
+          <mat-expansion-panel-header class="menu-panel-header">
+            <mat-panel-title class="menu-panel-title">
+              <mat-icon class="menu-system-icon" aria-hidden="true">{{ system.icon }}</mat-icon>
+              <span>{{ system.name }}</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="menu-panel-body" role="group" [attr.aria-labelledby]="'systems-heading'">
+            <mat-nav-list class="menu-screen-list" aria-label="Screens for {{ system.name }}">
+              @for (screen of system.screens; track screen.id) {
+                <button
+                  type="button"
+                  mat-list-item
+                  class="menu-screen-item"
+                  [class.menu-screen-item--active]="isScreenActive(system.id, screen.id)"
+                  (click)="selectScreen(system.id, screen.id)"
+                >
+                  <mat-icon matListItemIcon>{{ screen.icon }}</mat-icon>
+                  <span matListItemTitle>{{ screen.label }}</span>
+                </button>
+              }
+            </mat-nav-list>
+          </div>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+  </nav>
+
+  @if (activeDetail(); as detail) {
+    <section class="menu-detail" aria-label="تفاصيل الشاشة">
+      @switch (detail) {
+        @case ('units-measurement') {
+          <app-units-measurement
+            (saveClicked)="openSearchUnitsMeasurementFromUnits()"
+          ></app-units-measurement>
+        }
+        @case ('monitoring-elements') {
+          <app-monitoring-elements
+            (saveClicked)="openSearchMonitoringElementsFromMonitoring()"
+          ></app-monitoring-elements>
+        }
+        @case ('search-units-measurement') {
+          <app-search-units-measurement
+            (addClicked)="openUnitsMeasurementFromSearch()"
+            (searchClicked)="openSearchUnitsMeasurementFromSearch()"
+          ></app-search-units-measurement>
+        }
+        @case ('search-monitoring-elements') {
+          <app-search-monitoring-elements
+            (addClicked)="openMonitoringElementsFromSearch()"
+          ></app-search-monitoring-elements>
+        }
+        @case ('search-types-devices') {
+          <app-search-types-devices
+            (addClicked)="openTypesDevicesFromSearch()"
+            (searchClicked)="openSearchTypesDevicesFromSearch()"
+          ></app-search-types-devices>
+        }
+        @case ('search-devices') {
+          <app-search-devices
+            (addClicked)="openDevicesFromDevicesSearch()"
+          ></app-search-devices>
+        }
+        @case ('search-manufacturers') {
+          <app-search-manufacturers
+            (addClicked)="openManufacturersFromSearchManufacturers()"
+            (searchClicked)="openSearchManufacturersFromManufacturers()"
+          ></app-search-manufacturers>
+        }
+        @case ('search-approval-policy') {
+          <app-search-approval-policy
+            (addClicked)="openApprovalPolicyFromSearchApprovalPolicy()"
+            (searchClicked)="openSearchApprovalPolicyFromApprovalPolicy()"
+          ></app-search-approval-policy>
+        }
+        @case ('search-monitoring-stations') {
+          <app-search-monitoring-stations
+            (addClicked)="openMonitoringStationsFromSearch()"
+            (searchClicked)="openSearchMonitoringStationsFromMonitoring()"
+          ></app-search-monitoring-stations>
+        }
+        @case ('search-monitoring-operations') {
+          <app-search-monitoring-operations
+            (addClicked)="openMonitoringOperationsFromSearch()"
+            (searchClicked)="openSearchMonitoringOperationsFromMonitoring()"
+          ></app-search-monitoring-operations>
+        }
+        @case ('search-typesWastes') {
+          <app-search-types-wastes
+            (addClicked)="openTypesWastesFromSearch()"
+            (searchClicked)="openSearchTypesWastesFromTypesWastes()"
+          ></app-search-types-wastes>
+        }
+        @case ('search-monitoring-followup') {
+          <app-search-monitoring-followup
+            (addClicked)="openMonitoringFollowupFromSearch()"
+            (followClicked)="openMonitoringFollowupFromSearch()"
+            (searchClicked)="openSearchMonitoringFollowupFromFollowup()"
+          ></app-search-monitoring-followup>
+        }
+        @case ('search-environment-statements') {
+          <app-search-environment-statements
+            (addClicked)="openCreateStatementFromSearchEnvironmentStatements()"
+            (searchClicked)="openSearchEnvironmentStatementsFromStatements()"
+          ></app-search-environment-statements>
+        }
+        @case ('search-environmentalRecord') {
+          <app-search-environmental-record></app-search-environmental-record>
+        }
+        @case ('kpis-reports') {
+          <app-kpis-reports></app-kpis-reports>
+        }
+        @case ('search-followImplWaste') {
+          <app-search-follow-impl-waste
+            (addClicked)="openFollowImplWasteFromSearch()"
+            (searchClicked)="openSearchFollowImplWasteFromFollowImplWaste()"
+          ></app-search-follow-impl-waste>
+        }
+        @case ('search-record-start-end-work') {
+          <app-search-record-start-end-work
+            (addClicked)="openRecordStartEndWorkFromSearch()"
+            (searchClicked)="openSearchRecordStartEndWorkFromRecordStartEndWork()"
+          ></app-search-record-start-end-work>
+        }
+        @case ('search-reqIssuingSafeDisposalCert') {
+          <app-search-req-issuing-safe-disposal-cert
+            (addClicked)="openReqIssuingSafeDisposalCertFromSearch()"
+            (searchClicked)="openSearchReqIssuingSafeDisposalCertFromReqIssuingSafeDisposalCert()"
+          ></app-search-req-issuing-safe-disposal-cert>
+        }
+        @case ('search-reqRestoreThingOriginal') {
+          <app-search-req-restore-thing-original
+            (addClicked)="openReqRestoreThingOriginalFromSearch()"
+            (searchClicked)="openSearchReqRestoreThingOriginalFromReqRestoreThingOriginal()"
+          ></app-search-req-restore-thing-original>
+        }
+        @case ('search-wasteCollectReq') {
+          <app-search-waste-collect-req
+            (addClicked)="openWasteCollectReqFromSearch()"
+            (searchClicked)="openSearchWasteCollectReqFromWasteCollectReq()"
+            (reviewClicked)="openReviewWasteCollectReqFromSearch()"
+          ></app-search-waste-collect-req>
+        }
+        @case ('search-committees') {
+          <app-search-committees
+            (addClicked)="openCommitteesFromSearchCommittees()"
+            (searchClicked)="openSearchCommitteesFromCommittees()"
+          ></app-search-committees>
+        }
+        @case ('search-reviewers') {
+          <app-search-reviewers
+            (addClicked)="openReviewersFromSearchReviewers()"
+            (searchClicked)="openSearchReviewersFromReviewers()"
+          ></app-search-reviewers>
+        }
+        @case ('search-owners') {
+          <app-search-owners
+            (addClicked)="openOwnersFromSearchOwners()"
+            (searchClicked)="openSearchOwnersFromOwners()"
+          ></app-search-owners>
+        }
+        @case ('search-operating-companies') {
+          <app-search-operating-companies
+            (addClicked)="openOperatingCompaniesFromSearchOperatingCompanies()"
+            (searchClicked)="openSearchOperatingCompaniesFromOperatingCompanies()"
+          ></app-search-operating-companies>
+        }
+        @case ('types-devices') {
+          <app-types-devices
+            (saveClicked)="openSearchTypesDevicesFromTypes()"
+          ></app-types-devices>
+        }
+        @case ('search-suppliers') {
+          <app-search-suppliers
+            (addClicked)="openDevicesFromSuppliersSearch()"
+            (searchClicked)="openSearchSuppliersFromDevices()"
+          ></app-search-suppliers>
+        }
+        @case ('devices') {
+          <app-devices
+            (saveClicked)="openSearchDevicesFromDevices()"
+          ></app-devices>
+        }
+        @case ('suppliers') {
+          <app-suppliers
+            (saveClicked)="openSearchSuppliersFromSuppliers()"
+          ></app-suppliers>
+        }
+        @case ('manufacturers') {
+          <app-manufacturers
+            (saveClicked)="openSearchManufacturersFromManufacturers()"
+          ></app-manufacturers>
+        }
+        @case ('approval-policy') {
+          <app-approval-policy
+            (saveClicked)="openSearchApprovalPolicyFromApprovalPolicy()"
+          ></app-approval-policy>
+        }
+        @case ('owners') {
+          <app-owners
+            (saveClicked)="openSearchOwnersFromOwners()"
+          ></app-owners>
+        }
+        @case ('operating-companies') {
+          <app-operating-companies
+            (saveClicked)="openSearchOperatingCompaniesFromOperatingCompanies()"
+          ></app-operating-companies>
+        }
+        @case ('monitoring-stations') {
+          <app-monitoring-stations
+            (saveClicked)="openSearchMonitoringStationsFromMonitoring()"
+          ></app-monitoring-stations>
+        }
+        @case ('monitoring-operations') {
+          <app-monitoring-operations
+            (saveClicked)="openSearchMonitoringOperationsFromMonitoring()"
+          ></app-monitoring-operations>
+        }
+        @case ('typesWastes') {
+          <app-types-wastes
+            (saveClicked)="openSearchTypesWastesFromTypesWastes()"
+          ></app-types-wastes>
+        }
+        @case ('monitoring-followup') {
+          <app-monitoring-followup
+            (saveClicked)="openSearchMonitoringFollowupFromFollowup()"
+            (createStatementClicked)="openCreateStatementFromMonitoringFollowup()"
+          ></app-monitoring-followup>
+        }
+        @case ('environment-statements') {
+          <app-environment-statements
+            (saveClicked)="openSearchEnvironmentStatementsFromStatements()"
+          ></app-environment-statements>
+        }
+        @case ('followImplWaste') {
+          <app-follow-impl-waste
+            (saveClicked)="openSearchFollowImplWasteFromFollowImplWaste()"
+          ></app-follow-impl-waste>
+        }
+        @case ('record-start-end-work') {
+          <app-record-start-end-work
+            (saveClicked)="openSearchRecordStartEndWorkFromRecordStartEndWork()"
+          ></app-record-start-end-work>
+        }
+        @case ('reqIssuingSafeDisposalCert') {
+          <app-req-issuing-safe-disposal-cert
+            (saveClicked)="openSearchReqIssuingSafeDisposalCertFromReqIssuingSafeDisposalCert()"
+          ></app-req-issuing-safe-disposal-cert>
+        }
+        @case ('reqRestoreThingOriginal') {
+          <app-req-restore-thing-original
+            (saveClicked)="openSearchReqRestoreThingOriginalFromReqRestoreThingOriginal()"
+          ></app-req-restore-thing-original>
+        }
+        @case ('wasteCollectReq') {
+          <app-waste-collect-req
+            (saveClicked)="openSearchWasteCollectReqFromWasteCollectReq()"
+          ></app-waste-collect-req>
+        }
+        @case ('review-waste-collect-req') {
+          <app-review-waste-collect-req
+            (saveClicked)="openSearchWasteCollectReqFromWasteCollectReq()"
+          ></app-review-waste-collect-req>
+        }
+        @case ('create-statement') {
+          <app-create-statement
+            (saveClicked)="openSearchEnvironmentStatementsFromStatements()"
+          ></app-create-statement>
+        }
+        @case ('reviewers') {
+          <app-reviewers
+            (saveClicked)="openSearchReviewersFromReviewers()"
+          ></app-reviewers>
+        }
+        @case ('committees') {
+          <app-committees
+            (saveClicked)="openSearchCommitteesFromCommittees()"
+          ></app-committees>
+        }
+      }
+    </section>
+  }
+</div>

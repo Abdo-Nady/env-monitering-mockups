@@ -1,0 +1,196 @@
+<div>
+  <div class="title">متابعة المراقبة</div>
+  <form class="form" action="">
+    <table>
+      <tr>
+        <td>الميناء</td>
+        <td>
+          <div class="input-field" disabled>
+            <input autocomplete="off" type="text" readonly name="text" id="transactionDate" value="ميناء 1" />
+          </div>
+        </td>
+        <td>التاريخ</td>
+        <td>
+          <div class="input-field" disabled>
+            <input autocomplete="off" type="datetime-local" readonly name="text" id="transactionDate"
+              value="2026-04-17 08:00" />
+          </div>
+        </td>
+
+      </tr>
+      <tr>
+        <td>المصدر</td>
+        <td>
+          <mat-radio-group aria-label="Select an option" [value]="selectedType" (change)="onTypeChange($event)">
+            <mat-radio-button value="report">بلاغ</mat-radio-button>
+          </mat-radio-group>
+        </td>
+
+      </tr>
+
+      <tr>
+        <td>عنصر المراقبة</td>
+        <td>
+          <div class="input-field" disabled>
+            <input autocomplete="off" type="text" readonly name="text" id="transactionDate" value="حدث" />
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>التعليمات المتبعة</td>
+        <td colspan="15">
+          <div class="input-field">
+            <input autocomplete="off" type="text" readonly name="instructions" id="instructions"
+              value="رفع درجة الإستعداد، وطلب الدفاع المدنى" />
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>الملاحظات</td>
+        <td colspan="15">
+          <div class="input-field">
+            <input autocomplete="off" type="text" readonly name="notes" id="notes" value="كسر برصيف رقم 1" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <hr />
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>نوع المتسبب</td>
+        <td>
+          <mat-radio-group aria-label="نوع المتسبب" [value]="selectedCulpritType"
+            (change)="onCulpritTypeChange($event)">
+            <mat-radio-button value="vessel">سفينة</mat-radio-button>
+            <mat-radio-button value="company">شركة</mat-radio-button>
+            <mat-radio-button value="truck">شاحنة</mat-radio-button>
+            <mat-radio-button value="unknown">جهة غير معروفة</mat-radio-button>
+            <mat-radio-button value="natural">ظاهرة طبيعية</mat-radio-button>
+          </mat-radio-group>
+        </td>
+      </tr>
+    </table>
+    @if (selectedCulpritType === 'vessel') {
+    <table>
+      <tr>
+        <td>سفينة</td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="vessel" id="vessel">
+              <option value="">اختر سفينة</option>
+              <option value="1">CMA CGM ADONIS - رقم الطريق 1234567890</option>
+              <option value="2">WANDA A - رقم الطريق 1234567891</option>
+              <option value="3">ORION LEADER - رقم الطريق 1234567892</option>
+              <option value="4">BELLA NADIA - رقم الطريق 1234567893</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+        <td style="width: 25%;">رقم المحضر : لا يوجد</td>
+        <td style="width: 18%;">
+          <div class="btn-container">
+            <button type="button" class="btn" (click)="onCreateStatementClick()">إنشاء محضر</button>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+    }
+    @if (selectedCulpritType === 'company') {
+    <table>
+      <tr>
+        <td>شركة</td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="company" id="company">
+              <option value="">اختر شركة</option>
+              <option value="1">ميرسك إيجيبت (Maersk Egypt)</option>
+              <option value="2">ميديترانيان شيبنج كومبانى (MSC)</option>
+              <option value="3">سي إم ايه سي جي إم (CMA CGM)</option>
+              <option value="4">أوشن نتورك إكسبريس (ONE)</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+        <td style="width: 25%;">رقم المحضر : لا يوجد</td>
+        <td style="width: 18%;">
+          <div class="btn-container">
+            <button type="button" class="btn" (click)="onCreateStatementClick()">إنشاء محضر</button>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+  }
+    @if (selectedCulpritType === 'truck') {
+    <table>
+      <tr>
+        <td>الشاحنة</td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="vessel" id="vessel">
+              <option value="">اختر الشاحنة</option>
+              <option value="1">شاحنة س ا م 5245</option>
+              <option value="2">شاحنة ع ك م 2452</option>
+              <option value="3">شاحنة ق ا م 8523</option>
+              <option value="4">شاحنة ص ش م 1478</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+        <td style="width: 25%;">رقم المحضر : لا يوجد</td>
+        <td style="width: 18%;">
+          <div class="btn-container">
+            <button type="button" class="btn" (click)="onCreateStatementClick()">إنشاء محضر</button>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+    }
+
+    <table>
+      <tr>
+        <td>ما تم القيام به</td>
+        <td colspan="14">
+          <div class="input-field" style="width: 100%;">
+            <input autocomplete="off" type="text" name="instructions" id="instructions" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>الحالة</td>
+        <td>
+          <div class="input-field rich-select" style="width: 86%;">
+            <select name="status" id="status">
+              <option value="">اختر الحالة</option>
+              <option value="1" selected>جديد</option>
+              <option value="2">قيد المتابعة</option>
+              <option value="2">مكتمل</option>
+              <option value="3">ملغي</option>
+            </select>
+          </div>
+        </td>
+
+      </tr>
+    </table>
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSaveClick()">حفظ</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSaveClick()">إلغاء</button>
+      </div>
+    </div>
+  </form>
+</div>

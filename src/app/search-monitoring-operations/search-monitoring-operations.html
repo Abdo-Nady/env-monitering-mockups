@@ -1,0 +1,266 @@
+<div>
+  <form class="form">
+    <div class="form-row">
+      <div class="title" style="width: 500%;">تسجيل المراقبة</div>
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onAddClick()">إضافة</button>
+      </div>
+    </div>
+  </form>
+</div>
+<hr />
+
+<div>
+  <form class="form">
+    <div class="form-row">
+      <table>
+        <tr>
+          <td>الميناء</td>
+          <td>
+            <div class="input-field rich-select custom-rich-select" style="width: 93%;">
+              <button type="button" class="select-toggle" (click)="portsDropdownOpen = !portsDropdownOpen">
+                <span class="select-leading-icon material-icons" aria-hidden="true">anchor</span>
+                @if (!selectedPort) {
+                  <span class="selected-label">اختر الميناء</span>
+                } @else {
+                  <span class="selected-label">{{ selectedPort.name }}</span>
+                }
+                <span class="dropdown-icon material-icons">expand_more</span>
+              </button>
+              @if (portsDropdownOpen) {
+                <div class="dropdown-list">
+                  @for (port of ports; track port.id) {
+                    <button type="button" class="dropdown-option" (click)="selectPort(port); portsDropdownOpen = false">
+                      <div class="port-name">{{ port.name }}</div>
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+          </td>
+          <td>عنصر المراقبة</td>
+          <td>
+            <div class="input-field rich-select custom-rich-select rich-select--element" style="width: 93%;">
+              <button type="button" class="select-toggle" (click)="elementsDropdownOpen = !elementsDropdownOpen">
+                <span class="select-leading-icon material-icons" aria-hidden="true">science</span>
+                @if (!selectedElement) {
+                  <span class="selected-label">اختر عنصر المراقبة</span>
+                } @else {
+                  <span class="selected-label">
+                    <span class="element-name">{{ selectedElement.name }}</span>
+                    <span class="element-description" *ngIf="selectedElement.desc">{{ selectedElement.desc }}</span>
+                  </span>
+                }
+                <span class="dropdown-icon material-icons">expand_more</span>
+              </button>
+              @if (elementsDropdownOpen) {
+                <div class="dropdown-list">
+                  @for (element of elements; track element.id) {
+                    <button type="button" class="dropdown-option" (click)="selectElement(element); elementsDropdownOpen = false">
+                      <span class="element-name">{{ element.name }}</span>
+                      <span class="element-description" *ngIf="element.desc">{{ element.desc }}</span>
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>من تاريخ</td>
+          <td>
+            <div class="input-field" style="width: 90%;">
+              <input autocomplete="off" type="datetime-local" name="text" id="name" />
+            </div>
+          </td>
+          <td>إلى تاريخ</td>
+          <td>
+            <div class="input-field" style="width: 90%;">
+              <input autocomplete="off" type="datetime-local" name="text" id="name" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>الجهاز</td>
+          <td>
+            <div class="input-field rich-select" style="width: 90%;">
+              <div class="custom-rich-select">
+                <button type="button" class="select-toggle" (click)="devicesDropdownOpen = !devicesDropdownOpen">
+                  @if (!selectedDevice) {
+                  <span>اختر الجهاز</span>
+                  } @else {
+                  <span class="selected-label">
+                    <span class="device-name">{{ selectedDevice.name }}</span>
+                    <span class="device-description">{{ selectedDevice.desc }}</span>
+                  </span>
+                  }
+                  <span class="dropdown-icon material-icons">expand_more</span>
+                </button>
+
+                @if (devicesDropdownOpen) {
+                <div class="dropdown-list">
+                  @for (device of devices; track device.id) {
+                  <button type="button" class="dropdown-option"
+                    (click)="selectDevice(device); devicesDropdownOpen = false">
+                    <div class="device-id">{{ device.id }}</div>
+                    <div class="device-info">
+                      <div class="device-name">{{ device.name }}</div>
+                      @if (device.desc) {
+                      <small class="device-extra">{{ device.desc }}</small>
+                      }
+                    </div>
+                  </button>
+                  }
+                </div>
+                }
+              </div>
+            </div>
+          </td>
+          <td>محطة الرصد</td>
+          <td>
+            <div class="input-field rich-select" style="width: 90%;">
+              <div class="custom-rich-select">
+                <button type="button" class="select-toggle" (click)="stationsDropdownOpen = !stationsDropdownOpen">
+                  @if (!selectedStation) {
+                  <span>اختر محطة الرصد</span>
+                  } @else {
+                  <span class="selected-label">
+                    <span class="station-name">{{ selectedStation.name }}</span>
+                    <span class="station-description">{{ selectedStation.desc }}</span>
+                  </span>
+                  }
+                  <span class="dropdown-icon material-icons">expand_more</span>
+                </button>
+
+                @if (stationsDropdownOpen) {
+                <div class="dropdown-list">
+                  @for (station of stations; track station.id) {
+                  <button type="button" class="dropdown-option"
+                    (click)="selectStation(station); stationsDropdownOpen = false">
+                    <div class="station-info">
+                      <div class="station-name">{{ station.name }}</div>
+                      @if (station.desc) {
+                      <small class="station-extra">{{ station.desc }}</small>
+                      }
+                    </div>
+                  </button>
+                  }
+                </div>
+                }
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSearchClick()">بحث</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSearchClick()">عرض التقرير</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSearchClick()">إلغاء</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<section class="table-card" aria-label="نتائج البحث">
+  <header class="table-card-header">
+    <h3 class="table-title">نتائج البحث</h3>
+  </header>
+
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="dataSource" class="units-table">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> م </th>
+        <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="port">
+        <th mat-header-cell *matHeaderCellDef> الميناء </th>
+        <td mat-cell *matCellDef="let element"> {{ element.port }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateTime">
+        <th mat-header-cell *matHeaderCellDef>التاريخ والوقت</th>
+        <td mat-cell *matCellDef="let element"> {{ element.dateTime }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="source">
+        <th mat-header-cell *matHeaderCellDef>المصدر</th>
+        <td mat-cell *matCellDef="let element"> {{ element.source }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="moniteringElements">
+        <th mat-header-cell *matHeaderCellDef>عنصر المراقبة</th>
+        <td mat-cell *matCellDef="let element"> {{ element.moniteringElements }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="IntegrationMechanism">
+        <th mat-header-cell *matHeaderCellDef>القيمة</th>
+        <td mat-cell *matCellDef="let element"> {{ element.IntegrationMechanism }} </td>
+      </ng-container>
+      <ng-container matColumnDef="measurementRate">
+        <th mat-header-cell *matHeaderCellDef>معدل القياس</th>
+        <td mat-cell *matCellDef="let element"> {{ element.measurementRate }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>إجراءات</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="action-buttons">
+            <button type="button" mat-icon-button class="edit-btn" aria-label="تعديل" title="تعديل">
+              <span class="material-icons">edit</span>
+            </button>
+            <button type="button" mat-icon-button class="delete-btn" aria-label="حذف" title="حذف">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <style>
+      .action-buttons {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .action-buttons .edit-btn {
+        background: linear-gradient(135deg, #1976d2, #64b5f6);
+        color: #fff;
+        border-radius: 8px;
+        padding: 8px 10px;
+        box-shadow: 0 2px 8px #1976d263;
+        transition: background 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .action-buttons .delete-btn {
+        background: linear-gradient(135deg, #d32f2f, #ff5252);
+        color: #fff;
+        border-radius: 8px;
+        padding: 8px 10px;
+        box-shadow: 0 2px 8px #d32f2f63;
+        transition: background 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .action-buttons button .material-icons {
+        vertical-align: middle;
+        font-size: 1.2rem;
+      }
+    </style>
+  </div>
+</section>

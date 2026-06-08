@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  direction: rtl;
+}
+
+.select-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.select-field {
+  width: 100%;
+}

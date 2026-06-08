@@ -1,0 +1,153 @@
+<div>
+  <div class="title">عنصر المراقبة</div>
+  <form class="form" action="">
+    <table>
+      <tr>
+        <td>اسم عنصر المراقبة *</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="username" />
+          </div>
+        </td>
+        <td>المرجع</td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر المرجع</option>
+              <option value="">اتفاقية ماربول (MARPOL)</option>
+              <option value="1">وكالة حماية البيئة الأمريكية (EPA)</option>
+              <option value="2">المنظمة البحرية الدولية (IMO)</option>
+              <option value="3">الهيئة الاقتصادية لقناة السويس (SCZone)</option>
+              <option value="3">بدون مرجع</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+    </tr>
+      <tr>
+        <td>الملحق/الإصدار</td>
+        <td>
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="">اختر الملحق/الإصدار</option>
+              <option value="1">الملحق 1</option>
+              <option value="2">الملحق 2</option>
+              <option value="3">الملحق 3</option>
+              <option value="4">الملحق 4</option>
+              <option value="5">الملحق 5</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+        </td>
+
+        <td>النوع</td>
+        <td>
+          <mat-radio-group aria-label="Select an option" [value]="selectedType" (change)="onTypeChange($event)">
+            <mat-radio-button value="measurable">قابل للقياس</mat-radio-button>
+            <mat-radio-button value="event">حدث</mat-radio-button>
+          </mat-radio-group>
+        </td>
+        
+      </tr>
+
+    </table>
+
+    @if (isMeasurable) {
+      <table>
+        <tr>
+          <td>وحدة القياس *</td>
+          <td>
+            <div class="input-field rich-select">
+              <select name="unit" id="unit">
+                <option value="">اختر وحدة القياس</option>
+                <option value="1">mg/m^3</option>
+                <option value="2">ppm</option>
+                <option value="3">mg/L</option>
+              </select>
+              <span class="select-caret" aria-hidden="true">▾</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    <label class="row-label">معدلات القياس</label>
+    <table style="border: 1px solid green ; padding: 10px; border-radius: 10px;">
+      <tr style="color: green;">
+        <td>معدل الأمن</td>
+        <td>من *</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="safe-rate-from" />
+          </div>
+        </td>
+        <td>الى *</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="safe-rate-to" />
+          </div>
+        </td>
+      </tr>
+    </table>
+    <table style="border: 1px solid orange ; padding: 10px; border-radius: 10px;">
+      <tr style="color: orange;">
+        <td>معدل التحذير</td>
+        <td>من *</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="safe-rate-from" />
+          </div>
+        </td>
+        <td>الى *</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="safe-rate-to" />
+          </div>
+        </td>
+      </tr>
+      <tr style="color: orange;">
+        <td>التعليمات المتبعة *</td><td></td>
+        <td colspan="15">
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="instructions" />
+          </div>
+        </td>
+      </tr>
+    </table>
+    <table style="border: 1px solid red ; padding: 10px; border-radius: 10px;">
+
+      <tr style="color: red;">
+        <td>معدل الخطر</td>
+        <td>من *</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="safe-rate-from" />
+          </div>
+        </td>
+        <td>الى *</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="safe-rate-to" />
+          </div>
+        </td>
+      </tr>
+      <tr style="color: red;">
+        <td>التعليمات المتبعة *</td><td></td>
+        <td colspan="15">
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="instructions" />
+          </div>
+        </td>
+      </tr>
+    </table>
+    }
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSaveClick()">حفظ</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSaveClick()">إلغاء</button>
+      </div>
+    </div>
+
+  </form>
+</div>

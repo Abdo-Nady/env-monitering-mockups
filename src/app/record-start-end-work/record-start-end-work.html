@@ -1,0 +1,149 @@
+<div>
+  <div class="title">بيانات تسجيل بداية ونهاية جمع النفايات</div>
+  <form class="form" action="">
+    <table>
+      <tr>
+        <td style="width: 20%;">اسم الشركة</td>
+        <td style="width: 30%;">
+          <div class="input-field" style="width: 93%;">
+            <input autocomplete="off" type="text" readonly name="text" id="port" value="ميرسك مصر" />
+          </div>
+
+        </td>
+        <td style="width: 10%;">الميناء</td>
+        <td style="width: 40%;">
+          <div class="input-field" style="width: 92%;">
+            <input autocomplete="off" type="text" readonly name="text" id="port" value="ميناء 1" />
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>طلب جمع النفايات</td>
+        <td colspan="3">
+          <div class="input-field" style="width: 109%;">
+            <input autocomplete="off" type="text" readonly name="text" id="port"
+              value="تاريخ الطلب 02-04-2026 - شركة سي إم آي - سي جي إم" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>الموقع</td>
+        <td colspan="3">
+          <div class="input-field" style="width: 109%;">
+            <input autocomplete="off" type="text" readonly name="text" id="port" value="رصيف 1 بيتا 52" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>حالة الجمع</td>
+        <td>
+          <div class="input-field rich-select" style="width: 92%;">
+            <select name="unit" id="unit">
+              <option value="">اختر حالة الجمع</option>
+              <option value="1">جارى الجمع</option>
+              <option value="2" selected>تم الجمع</option>
+              <option value="3">لم يتم الجمع</option>
+            </select>
+            <span class="select-caret" aria-hidden="true">▾</span>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+
+    <section class="table-card" aria-label="بيانات تسجيل الجمع">
+      <header class="table-card-header">
+        <h5 class="table-title">بيانات تسجيل الجمع</h5>
+      </header>
+      <div class="action-buttons" style="margin-bottom: 8px;">
+        <button type="button" mat-icon-button class="edit-btn" aria-label="إضافة" title="إضافة">
+          <span class="material-icons">add</span>
+        </button>
+      </div>
+      <div class="table-wrapper">
+        <table mat-table [dataSource]="attachmentsDataSource" class="units-table">
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> م </th>
+            <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+          </ng-container>
+          
+
+          <ng-container matColumnDef="fromDateTime">
+            <th mat-header-cell *matHeaderCellDef> تاريخ البداية </th>
+            <td mat-cell *matCellDef="let element"> {{ element.fromDateTime }} </td>
+          </ng-container>
+          <ng-container matColumnDef="toDateTime">
+            <th mat-header-cell *matHeaderCellDef> تاريخ النهاية </th>
+            <td mat-cell *matCellDef="let element"> {{ element.toDateTime }} </td>
+          </ng-container>
+          <ng-container matColumnDef="notes">
+            <th mat-header-cell *matHeaderCellDef> الملاحظات </th>
+            <td mat-cell *matCellDef="let element"> {{ element.notes }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>إجراءات</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="action-buttons">
+                <button type="button" mat-icon-button class="edit-btn" aria-label="تعديل" title="تعديل">
+                  <span class="material-icons">edit</span>
+                </button>
+                <button type="button" mat-icon-button class="delete-btn" aria-label="حذف" title="حذف">
+                  <span class="material-icons">delete</span>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="attachmentsDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: attachmentsDisplayedColumns"></tr>
+        </table>
+        <style>
+          .action-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: flex-start;
+          }
+
+          .action-buttons .edit-btn {
+            background: linear-gradient(135deg, #1976d2, #64b5f6);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            box-shadow: 0 2px 8px #1976d263;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons .delete-btn {
+            background: linear-gradient(135deg, #d32f2f, #ff5252);
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            box-shadow: 0 2px 8px #d32f2f63;
+            transition: background 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .action-buttons button .material-icons {
+            vertical-align: middle;
+            font-size: 1.2rem;
+          }
+        </style>
+      </div>
+    </section>
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSaveClick()">حفظ</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSaveClick()">إلغاء</button>
+      </div>
+    </div>
+  </form>
+</div>

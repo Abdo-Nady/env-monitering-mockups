@@ -1,0 +1,10 @@
+<div class="select-panel">
+  <mat-form-field appearance="outline" class="select-field" subscriptSizing="dynamic">
+    <mat-label>عنصر المراقبة</mat-label>
+    <mat-select [formControl]="control" placeholder="اختر نوع العنصر">
+      @for (opt of options; track opt.value) {
+        <mat-option [value]="opt.value">{{ opt.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>

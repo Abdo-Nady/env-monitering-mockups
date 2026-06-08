@@ -1,0 +1,490 @@
+<div>
+  <div class="title">بيانات الجهاز</div>
+  <form class="form" action="">
+    <table>
+      <tr>
+        <td><label>رقم الجهاز *</label></td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="partNumber" />
+          </div>
+        </td>
+        <td><label>نوع الجهاز *</label></td>
+        <td>
+          <div class="input-field rich-select" style="width: 91%;">
+            <select name="unit" id="unit">
+              <option value="">اختر نوع الجهاز</option>
+              <option value="1">مراقبة جودة الهواء</option>
+              <option value="2">مراقبة درجة الحرارة</option>
+              <option value="3">مراقبة درجة الرطوبة</option>
+              <option value="4">مراقبة الإشعاع</option>
+              <option value="5">كاميرا مراقبة المرور</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>المورد *</label></td>
+        <td>
+          <div class="input-field rich-select" style="width: 91%;">
+            <select name="unit" id="unit">
+              <option value="">اختر المورد</option>
+              <option value="1">مورد 1</option>
+              <option value="2">مورد 2</option>
+              <option value="3">مورد 3</option>
+              <option value="4">مورد 4</option>
+              <option value="5">مورد 5</option>
+            </select>
+          </div>
+        </td>
+        <td><label>المصنع *</label></td>
+        <td>
+          <div class="input-field rich-select" style="width: 91%;">
+            <select name="unit" id="unit">
+              <option value="">اختر المصنع</option>
+              <option value="1">مصنع 1</option>
+              <option value="2">مصنع 2</option>
+              <option value="3">مصنع 3</option>
+              <option value="4">مصنع 4</option>
+              <option value="5">مصنع 5</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>اسم الشركة/الجهة المالكة</label></td>
+        <td>
+          <div class="input-field rich-select" style="width: 91%;">
+            <select name="unit" id="unit">
+              <option value="">اختر الشركة/الجهة المالكة</option>
+              <option value="1">شركة 1</option>
+              <option value="2">شركة 2</option>
+              <option value="3">شركة 3</option>
+              <option value="4">شركة 4</option>
+              <option value="5">شركة 5</option>
+            </select>
+          </div>
+        </td>
+        <td><label>الترخيص </label></td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" readonly type="text" name="text" id="thirdPartyLicense" value="1234567890" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><label>الحالة *</label></td>
+        <td>
+          <div class="input-field rich-select" style="width: 91%;">
+            <select name="unit" id="unit">
+              <option value="">اختر الحالة</option>
+              <option value="1">نشط</option>
+              <option value="2">غير نشط</option>
+              <option value="3">معطل</option>
+            </select>
+          </div>
+        </td>
+        <td><label>المكان *</label></td>
+        <td>
+          <div class="input-field rich-select" style="width: 91%;">
+            <select name="unit" id="unit" (change)="onLocationChange($event)">
+              <option value="0">اختر المكان</option>
+              <option value="1">رصيف</option>
+              <option value="2">ساحة</option>
+              <option value="3">بوابة</option>
+              <option value="7">ميزان</option>
+              <option value="4">مخزن</option>
+              <option value="8">مبنى</option>
+              <option value="5">طريق</option>
+              <option value="6">جهاز متحرك</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+    </table>
+    @if (locationValue === 0 || locationValue === 6) {
+    <table>
+      <tr>
+        <td><br /></td>
+      </tr>
+    </table>
+    }
+
+
+    @if (locationValue === 1) {
+    <table>
+      <tr>
+        <td><label>ميناء</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر الميناء</option>
+              <option value="1">ميناء 1</option>
+              <option value="2">ميناء 2</option>
+              <option value="3">ميناء 3</option>
+              <option value="4">ميناء 4</option>
+              <option value="5">ميناء 5</option>
+            </select>
+          </div>
+
+        </td>
+        <td><label>منطقة</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر المنطقة</option>
+              <option value="1">منطقة 1</option>
+              <option value="2">منطقة 2</option>
+              <option value="3">منطقة 3</option>
+              <option value="4">منطقة 4</option>
+              <option value="5">منطقة 5</option>
+            </select>
+          </div>
+        </td>
+        <td><label>رصيف</label></td>
+        
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر الرصيف</option>
+              <option value="1">رصيف 1</option>
+              <option value="2">رصيف 2</option>
+              <option value="3">رصيف 3</option>
+              <option value="4">رصيف 4</option>
+              <option value="5">رصيف 5</option>
+            </select>
+          </div>
+        </td>
+        <td><label>بيتا</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر البيتا</option>
+              <option value="1">بيتا 1</option>
+              <option value="2">بيتا 2</option>
+              <option value="3">بيتا 3</option>
+              <option value="4">بيتا 4</option>
+              <option value="5">بيتا 5</option>
+            </select>
+          </div>
+        </td>
+
+      </tr>
+    </table>
+    }
+
+
+    @if (locationValue === 2) {
+    <table>
+      <tr>
+        <td><label>ميناء</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر الميناء</option>
+              <option value="1">ميناء 1</option>
+              <option value="2">ميناء 2</option>
+              <option value="3">ميناء 3</option>
+              <option value="4">ميناء 4</option>
+              <option value="5">ميناء 5</option>
+            </select>
+          </div>
+        </td>
+        <td><label>منطقة</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر المنطقة</option>
+              <option value="1">منطقة 1</option>
+              <option value="2">منطقة 2</option>
+              <option value="3">منطقة 3</option>
+              <option value="4">منطقة 4</option>
+              <option value="5">منطقة 5</option>
+            </select>
+          </div>
+        </td>
+
+        <td><label>الساحة</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر الساحة</option>
+              <option value="1">ساحة 1</option>
+              <option value="2">ساحة 2</option>
+              <option value="3">ساحة 3</option>
+              <option value="4">ساحة 4</option>
+              <option value="5">ساحة 5</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+    </table>
+    }
+
+    @if (locationValue === 3) {
+    <table>
+      <tr>
+        <td><label>ميناء</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر الميناء</option>
+              <option value="1">ميناء 1</option>
+              <option value="2">ميناء 2</option>
+              <option value="3">ميناء 3</option>
+              <option value="4">ميناء 4</option>
+              <option value="5">ميناء 5</option>
+            </select>
+          </div>
+        </td>
+
+        <td><label>منطقة</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر المنطقة</option>
+              <option value="1">منطقة 1</option>
+              <option value="2">منطقة 2</option>
+              <option value="3">منطقة 3</option>
+              <option value="4">منطقة 4</option>
+              <option value="5">منطقة 5</option>
+            </select>
+          </div>
+        </td>
+
+
+        <td><label>بوابة</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر البوابة</option>
+              <option value="1">ساحة 1</option>
+              <option value="2">بوابة 2</option>
+              <option value="3">بوابة 3</option>
+              <option value="4">بوابة 4</option>
+              <option value="5">بوابة 5</option>
+            </select>
+          </div>
+        </td>
+
+        <td><label>حارة</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر الحارة</option>
+              <option value="1">منطقة 1</option>
+              <option value="2">حارة 2</option>
+              <option value="3">حارة 3</option>
+              <option value="4">حارة 4</option>
+              <option value="5">حارة 5</option>
+            </select>
+          </div>
+        </td>
+
+      </tr>
+    </table>
+    }
+
+    @if (locationValue === 4) {
+    <table>
+      <tr>
+        <td><label>ميناء</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر الميناء</option>
+              <option value="1">ميناء 1</option>
+              <option value="2">ميناء 2</option>
+              <option value="3">ميناء 3</option>
+              <option value="4">ميناء 4</option>
+              <option value="5">ميناء 5</option>
+            </select>
+          </div>
+        </td>
+
+        <td><label>منطقة</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر المنطقة</option>
+              <option value="1">منطقة 1</option>
+              <option value="2">منطقة 2</option>
+              <option value="3">منطقة 3</option>
+              <option value="4">منطقة 4</option>
+              <option value="5">منطقة 5</option>
+            </select>
+          </div>
+        </td>
+
+
+        <td><label>مخزن</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر المخزن</option>
+              <option value="1">ساحة 1</option>
+              <option value="2">ساحة 2</option>
+              <option value="3">مخزن 3</option>
+              <option value="4">مخزن 4</option>
+              <option value="5">مخزن 5</option>
+            </select>
+          </div>
+        </td>
+      </tr>
+    </table>
+    }
+
+    @if (locationValue === 5) {
+    <table>
+      <tr>
+        <td><label>ميناء</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر الميناء</option>
+              <option value="1">ميناء 1</option>
+              <option value="2">ميناء 2</option>
+              <option value="3">ميناء 3</option>
+              <option value="4">ميناء 4</option>
+              <option value="5">ميناء 5</option>
+            </select>
+          </div>
+        </td>
+        <td><label>منطقة</label></td>
+        <td>
+          <div class="input-field rich-select">
+            <select name="unit" id="unit">
+              <option value="">اختر المنطقة</option>
+              <option value="1">منطقة 1</option>
+              <option value="2">منطقة 2</option>
+              <option value="3">منطقة 3</option>
+              <option value="4">منطقة 4</option>
+              <option value="5">منطقة 5</option>
+            </select>
+          </div>
+        </td>
+        <td><label>إحداثي</label></td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="latLong" value="[31.2059564,29.9624897]"/>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+    }
+
+    @if (locationValue === 7) {
+      <table>
+        <tr>
+          <td><label>ميناء</label></td>
+          <td>
+            <div class="input-field rich-select">
+              <select name="unit" id="unit">
+                <option value="">اختر الميناء</option>
+                <option value="1">ميناء 1</option>
+                <option value="2">ميناء 2</option>
+                <option value="3">ميناء 3</option>
+                <option value="4">ميناء 4</option>
+                <option value="5">ميناء 5</option>
+              </select>
+            </div>
+          </td>
+  
+          <td><label>منطقة</label></td>
+          <td>
+            <div class="input-field rich-select">
+              <select name="unit" id="unit">
+                <option value="">اختر المنطقة</option>
+                <option value="1">منطقة 1</option>
+                <option value="2">منطقة 2</option>
+                <option value="3">منطقة 3</option>
+                <option value="4">منطقة 4</option>
+                <option value="5">منطقة 5</option>
+              </select>
+            </div>
+          </td>
+  
+  
+          <td><label>ميزان</label></td>
+          <td>
+            <div class="input-field rich-select">
+              <select name="unit" id="unit">
+                <option value="">اختر الميزان</option>
+                <option value="1">ساحة 1</option>
+                <option value="2">ميزان 2</option>
+                <option value="3">ميزان 3</option>
+                <option value="4">ميزان 4</option>
+                <option value="5">ميزان 5</option>
+              </select>
+            </div>
+          </td>
+  
+  
+        </tr>
+      </table>
+      }
+  
+      @if (locationValue === 8) {
+        <table>
+          <tr>
+            <td><label>ميناء</label></td>
+            <td>
+              <div class="input-field rich-select">
+                <select name="unit" id="unit">
+                  <option value="">اختر الميناء</option>
+                  <option value="1">ميناء 1</option>
+                  <option value="2">ميناء 2</option>
+                  <option value="3">ميناء 3</option>
+                  <option value="4">ميناء 4</option>
+                  <option value="5">ميناء 5</option>
+                </select>
+              </div>
+            </td>
+    
+            <td><label>منطقة</label></td>
+            <td>
+              <div class="input-field rich-select">
+                <select name="unit" id="unit">
+                  <option value="">اختر المنطقة</option>
+                  <option value="1">منطقة 1</option>
+                  <option value="2">منطقة 2</option>
+                  <option value="3">منطقة 3</option>
+                  <option value="4">منطقة 4</option>
+                  <option value="5">منطقة 5</option>
+                </select>
+              </div>
+            </td>
+    
+    
+            <td><label>مبنى</label></td>
+            <td>
+              <div class="input-field rich-select">
+                <select name="unit" id="unit">
+                  <option value="">اختر المبنى</option>
+                  <option value="1">مبنى 1</option>
+                  <option value="2">مبنى 2</option>
+                  <option value="3">مبنى 3</option>
+                  <option value="4">مبنى 4</option>
+                  <option value="5">مبنى 5</option>
+                </select>
+              </div>
+            </td>
+    
+    
+          </tr>
+        </table>
+        }
+    
+  
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSaveClick()">حفظ</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSaveClick()">إلغاء</button>
+      </div>
+    </div>
+
+  </form>
+</div>

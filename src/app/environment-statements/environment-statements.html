@@ -1,0 +1,176 @@
+<div>
+  <div class="title">المحاضر</div>
+  <form class="form" action="">
+    <table>
+      <tr>
+        <td>الميناء</td>
+        <td>
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="">اختر الميناء</option>
+              <option value="1">ميناء 1</option>
+              <option value="2">ميناء 2</option>
+              <option value="3">ميناء 3</option>
+              <option value="4">ميناء 4</option>
+              <option value="5">ميناء 5</option>
+            </select>
+          </div>
+        </td>
+        <td>التاريخ</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="datetime-local" name="text" id="transactionDate" />
+          </div>
+        </td>
+
+      </tr>
+      <tr>
+        <td>المصدر</td>
+        <td>
+          <mat-radio-group aria-label="Select an option" [value]="selectedType" (change)="onTypeChange($event)">
+            <mat-radio-button value="device">جهاز رصد</mat-radio-button>
+            <mat-radio-button value="station">محطة رصد</mat-radio-button>
+            <mat-radio-button value="report">بلاغ</mat-radio-button>
+          </mat-radio-group>
+        </td>
+
+        @if (sourceValue === 'device') {
+        <td>الجهاز</td>
+        <td>
+          <div class="input-field rich-select rich-select--device" style="width: 92%;">
+            <div class="custom-rich-select custom-rich-select--device">
+              <button type="button" class="select-toggle" (click)="devicesDropdownOpen = !devicesDropdownOpen">
+                <span class="select-leading-icon material-icons" aria-hidden="true">memory</span>
+                @if (!selectedDevice) {
+                <span class="selected-label">اختر الجهاز</span>
+                } @else {
+                <span class="selected-label">
+                  <span class="device-name">{{ selectedDevice.name }}</span>
+                  <span class="device-description">{{ selectedDevice.desc }}</span>
+                </span>
+                }
+                <span class="dropdown-icon material-icons">expand_more</span>
+              </button>
+
+              @if (devicesDropdownOpen) {
+              <div class="dropdown-list">
+                @for (device of devices; track device.id) {
+                <button type="button" class="dropdown-option"
+                  (click)="selectDevice(device); devicesDropdownOpen = false">
+                  <div class="device-id">{{ device.id }}</div>
+                  <div class="device-info">
+                    <div class="device-name">{{ device.name }}</div>
+                    @if (device.desc) {
+                    <small class="device-extra">{{ device.desc }}</small>
+                    }
+                  </div>
+                </button>
+                }
+              </div>
+              }
+            </div>
+          </div>
+        </td>
+        }
+        @if (sourceValue === 'station') {
+        <td>محطة الرصد</td>
+        <td>
+          <div class="input-field rich-select" style="width: 90%;">
+            <div class="custom-rich-select">
+              <button type="button" class="select-toggle" (click)="stationsDropdownOpen = !stationsDropdownOpen">
+                @if (!selectedStation) {
+                <span>اختر محطة الرصد</span>
+                } @else {
+                <span class="selected-label">
+                  <span class="station-name">{{ selectedStation.name }}</span>
+                  <small class="station-extra">{{ selectedStation.desc }}</small>
+                </span>
+                }
+                <span class="dropdown-icon material-icons">expand_more</span>
+              </button>
+
+              @if (stationsDropdownOpen) {
+              <div class="dropdown-list">
+                @for (station of stations; track station.id) {
+                <button type="button" class="dropdown-option"
+                  (click)="selectStation(station); stationsDropdownOpen = false">
+                  <div class="station-info">
+                    <div class="station-name">{{ station.name }}</div>
+                    @if (station.desc) {
+                    <small class="station-extra">{{ station.desc }}</small>
+                    }
+                  </div>
+                </button>
+                }
+              </div>
+              }
+            </div>
+          </div>
+        </td>
+        }
+      </tr>
+
+      <tr>
+        <td>عنصر المراقبة</td>
+        <td>
+          <div class="input-field rich-select" style="width: 93%;">
+            <select name="unit" id="unit">
+              <option value="">اختر عنصر المراقبة</option>
+              <option value="1">رياح - m/s</option>
+              <option value="2">مطر - mm</option>
+              <option value="3">غبار - mg/m^3</option>
+              <option value="4" selected>CO2 - ppm</option>
+              <option value="5">CO1 - ppm</option>
+              <option value="6">O2 - ppm</option>
+              <option value="6">حدث</option>
+            </select>
+          </div>
+        </td>
+        <td>القيمة</td>
+        <td>
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="text" id="value" value="100" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>معدل القياس</td>
+        <td>
+          <div class="input-field" style="width: 103%;">
+            <input autocomplete="off" type="text" name="text" readonly id="measurementRate" value="معدل التحذير">
+          </div>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>التعليمات المتبعة</td>
+        <td colspan="15">
+          <div class="input-field">
+            <input autocomplete="off" type="text" readonly name="instructions" id="instructions" value="رفع درجة الإستعداد، وطلب الدفاع المدنى"/>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>الملاحظات</td>
+        <td colspan="15">
+          <div class="input-field">
+            <input autocomplete="off" type="text" name="notes" id="notes" />
+          </div>
+        </td>
+      </tr>
+
+    </table>
+
+
+    <div class="form-row button-row">
+      <div class="btn-container">
+        <button type="button" class="btn" (click)="onSaveClick()">حفظ</button>
+      </div>
+      <div class="btn-container">
+        <button type="button" class="btn cancel-btn" (click)="onSaveClick()">إلغاء</button>
+      </div>
+    </div>
+  </form>
+</div>
